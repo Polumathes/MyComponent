@@ -12,29 +12,32 @@
  */
 
 /* @var $modx modX */
-
+/**
+* change modProcessor to modObject<action>Processor
+*/
 
 class mc_ProcessorTypeProcessor extends modProcessor {
     public $classKey = 'modmc_Element';
     public $languageTopics = array('mc_packageNameLower:default');
     public $defaultSortField = 'name';
     public $defaultSortDirection = 'ASC';
+    /*
     public $ids;
 
     function initialize() {
-        /* Initialization here */
+        // Initialization here 
         return true;
-    }
+    }*/
 
     /* For built-in processors (create, update, duplicate, remove),
        this method can be removed */
-    public function process() {
+   /* public function process() {
 
         /* perform action here */
 
         return $this->success();
 
-    }
+    }*/
 }
 
 return 'mc_ProcessorTypeProcessor';

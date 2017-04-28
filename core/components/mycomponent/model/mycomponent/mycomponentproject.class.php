@@ -1335,7 +1335,8 @@ class MyComponentProject {
         foreach ($processors as $processor) {
             $couple = explode(':', $processor);
             $dir = $processorDir . $couple[0];
-            $file = $couple[1] . '.class.php';
+            $filesplit = explode('.',$couple[1]);
+            $file = count($filesplit) > 1 ? $couple[1] : $couple[1]. '.class.php';
             if (!file_exists(rtrim($dir, '/') . '/' . $file)) {
                 $tpl = $this->getProcessorTpl($dir, $file);
                 $this->helpers->writeFile(rtrim($dir, '/'), $file, $tpl);
@@ -1492,7 +1493,8 @@ class MyComponentProject {
                     $tpl = $this->helpers->getTpl('cmp.defaultjs');
                 } elseif (strpos($file, 'grid') !== false) {
                     $tpl = $this->getGridTpl($file);
-
+                } elseif (strpos($file, 'window') !== false){
+	                    $tpl = $this->getWindowTpl($file);
                 } else {
                     /* Look for a tpl chunk with the name filename.tpl */
                     $tpl = $this->helpers->getTpl('cmp.' . $file);
@@ -1530,7 +1532,27 @@ class MyComponentProject {
         $tpl = str_replace('[[+element]]', $name, $tpl);
         $tpl = str_replace('[[+Element]]', ucfirst($name), $tpl);
 
+        $split = explode('.',$file);
+        $object = $split[0];
+        $tpl = str_replace('[[+object]]', $object, $tpl);
+        $tpl = str_replace('[[+Object]]', ucfirst($object),$tpl);
+        
+        return $tpl;
+    }
 
+    /**
+     * Get and customize the content of any window JS files specified
+     * in the project config file
+     *
+     * @param $file
+     * @return mixed
+     */
+    function getWindowTpl($file) {
+        $tpl = $this->helpers->getTpl('cmp.window');
+        $split = explode('.',$file);
+        $object = $split[0];
+        $tpl = str_replace('[[+object]]', $object, $tpl);
+        $tpl = str_replace('[[+Object]]', ucfirst($object),$tpl);
         return $tpl;
     }
 
@@ -1787,11 +1809,7 @@ class MyComponentProject {
                 $alias = $this->helpers->getNameAlias($class);
                 $object = $this->modx->getObject($class,
                     array($alias => $element));
-                if (! $object) {
-                    $static = false;
-                } else {
-                    $static = $object->get('static');
-                }
+                $static = $object->get('static');
                 if (!empty($static)) {
                     $this->helpers->sendLog(modX::LOG_LEVEL_INFO,
                         $this->modx->lexicon('mc_processing_static_element')

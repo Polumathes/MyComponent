@@ -21,46 +21,63 @@ class mc_ProcessorTypeProcessor extends modObjectGetListProcessor {
     public $defaultSortDirection = 'ASC';
 
 
-    /**
-     * Convert category ID to category name for objects with a category.
-     * Convert template ID to template name for objects with a template
+   /**
+     * Iterate across the data
      *
-     * Note: It's much more efficient to do these with a join, but that can
-     * only be done for objects known to have the field. This code can
-     * be used on any object.
-     *
-     * @param xPDOObject $object
+     * @param array $data
      * @return array
      */
-    public function prepareRow(xPDOObject $object) {
-        $fields = $object->toArray();
-        if (array_key_exists('category', $fields)) {
-            if (!empty($fields['category'])) {
-                $categoryObj = $this->modx->getObject('modCategory', $fields['category']);
-                if ($categoryObj) {
-                    $fields['category'] = $categoryObj->get('category');
-                } else {
-                    $fields['category'] = $this->modx->lexicon('invalid_category');
-                }
-            } else {
-                $fields['category'] = $this->modx->lexicon('none');
+    public function iterate(array $data) {
+        $list = array();
+        $list = $this->beforeIteration($list);
+        $this->currentIndex = 0;
+        /** @var xPDOObject|modAccessibleObject $object */
+        foreach ($data['results'] as $object) {
+            if ($this->checkListPermission && $object instanceof modAccessibleObject && !$object->checkPolicy('list')) continue;
+			
+            $objectArray = $this->prepareRow($object);
+			
+            if (!empty($objectArray) && is_array($objectArray)) {
+				$objectArray['cls'] = 'pupdate premove';
+                $list[] = $objectArray;
+                $this->currentIndex++;
             }
         }
-        if (array_key_exists('template', $fields)) {
-            if (!empty($fields['template'])) {
-                $templateObj = $this->modx->getObject('modTemplate', $fields['template']);
-                if ($templateObj) {
-                    $fields['template'] = $templateObj->get('category');
-                } else {
-                    $fields['template'] = $this->modx->lexicon('invalid_template');
-                }
-            } else {
-                $fields['template'] = $this->modx->lexicon('none');
-            }
+        $list = $this->afterIteration($list);
+		
+        return $list;
+    }
+	
+    /**
+     * Get the data of the query
+     * @return array
+     */
+    public function getData() {
+		
+        $data = array();
+        $limit = intval($this->getProperty('limit'));
+        $start = intval($this->getProperty('start'));
+
+        /* query for chunks */
+        $c = $this->modx->newQuery($this->classKey);
+        $c = $this->prepareQueryBeforeCount($c);
+        $data['total'] = $this->modx->getCount($this->classKey,$c);
+        $c = $this->prepareQueryAfterCount($c);
+
+        $sortClassKey = $this->getSortClassKey();
+        $sortKey = $this->modx->getSelectColumns($sortClassKey,$this->getProperty('sortAlias',$sortClassKey),'',array($this->getProperty('sort')));
+        if (empty($sortKey)) $sortKey = $this->getProperty('sort');
+		$dir = $this->getProperty('dir');
+		$dir = empty($dir) ? $this->defaultSortDir : $dir;
+        $c->sortby($sortKey,$dir);
+        if ($limit > 0) {
+            $c->limit($limit,$start);
         }
 
-
-        return $fields;
+		
+        $data['results'] = $this->modx->getCollection($this->classKey,$c);
+		
+        return $data;
     }
 }
 return 'mc_ProcessorTypeProcessor';

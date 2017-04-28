@@ -7,20 +7,20 @@ $components = array(
     'packageName' => 'Example',  /* No spaces, no dashes */
     'packageNameLower' => $packageNameLower,
     'packageDescription' => 'Example project for MyComponent extra',
-    'version' => '1.0.0',
-    'release' => 'beta1',
-    'author' => 'Bob Ray',
-    'email' => '<http://bobsguides.com>',
-    'authorUrl' => 'http://bobsguides.com',
-    'authorSiteName' => "Bob's Guides",
-    'packageDocumentationUrl' => 'http://bobsguides.com/example-tutorial.html',
-    'copyright' => '2014',
+    'version' => '0.0.1',
+    'release' => 'dev.0.1',
+    'author' => 'Grey Sky Media',
+    'email' => 'support@greyskymedia.com',
+    'authorUrl' => 'https://greyskymedia.com',
+    'authorSiteName' => "Grey Sky Media",
+    'packageDocumentationUrl' => 'http://greyskymedia.com/example-tutorial.html',
+    'copyright' => '2017',
 
     /* no need to edit this except to change format */
     'createdon' => strftime('%m-%d-%Y'),
 
-    'gitHubUsername' => 'BobRay',
-    'gitHubRepository' => 'Example',
+    'gitHubUsername' => '',
+    'gitHubRepository' => '',
 
     /* two-letter code of your primary language */
     'primaryLanguage' => 'en',
@@ -47,7 +47,7 @@ $components = array(
      * their namespace to the lowercase package name of your extra */
 
     'newSystemSettings' => array(
-        'example_system_setting1' => array( // key
+       /* 'example_system_setting1' => array( // key
             'key' => 'example_system_setting1',
             'name' => 'Example Setting One',
             'description' => 'Description for setting one',
@@ -64,7 +64,7 @@ $components = array(
             'xtype' => 'combo-boolean',
             'value' => true,
             'area' => 'area2',
-        ),
+        ),*/
     ),
 
     /* ************************ NEW SYSTEM EVENTS ************************* */
@@ -76,14 +76,14 @@ $components = array(
      * Warning: Do *not* list regular MODX System Events here !!! */
 
     'newSystemEvents' => array(
-        'OnMyEvent1' => array(
+       /* 'OnMyEvent1' => array(
             'name' => 'OnMyEvent1',
         ),
         'OnMyEvent2' => array(
             'name' => 'OnMyEvent2',
             'groupname' => 'Example',
             'service' => 1,
-        ),
+        ),*/
     ),
 
     /* ************************ NAMESPACE(S) ************************* */
@@ -105,11 +105,11 @@ $components = array(
     */
 
     'contexts' => array(
-        'example' => array(
+        /*'example' => array(
             'key' => 'example',
             'description' => 'example context',
             'rank' => 2,
-        )
+        )*/
     ),
 
     /* *********************** CONTEXT SETTINGS ************************ */
@@ -122,7 +122,7 @@ $components = array(
      * */
 
     'contextSettings' => array(
-        'example_context_setting1' => array(
+        /*'example_context_setting1' => array(
             'context_key' => 'example',
             'key' => 'example_context_setting1',
             'name' => 'Example Setting One',
@@ -141,7 +141,7 @@ $components = array(
             'xtype' => 'combo-boolean',
             'value' => true,
             'area' => 'example',
-        ),
+        ),*/
     ),
 
     /* ************************* CATEGORIES *************************** */
@@ -155,10 +155,10 @@ $components = array(
             'category' => 'Example',
             'parent' => '',  /* top level category */
         ),
-        'category2' => array(
+        /*'category2' => array(
             'category' => 'Category2',
-            'parent' => 'Example', /* nested under Example */
-        )
+            'parent' => 'Example', // nested under Example 
+        )*/
     ),
 
     /* *************************** MENUS ****************************** */
@@ -171,7 +171,7 @@ $components = array(
      * Every menu should have exactly one action */
 
     'menus' => array(
-        'Example' => array(
+        /*'Example' => array(
             'text' => 'Example',
             'parent' => 'components',
             'description' => 'ex_menu_desc',
@@ -189,7 +189,7 @@ $components = array(
                 'lang_topics' => 'example:default',
                 'assets' => '',
             ),
-        ),
+        ),*/
     ),
 
 
@@ -212,8 +212,8 @@ $components = array(
 
     'elements' => array(
 
-        'propertySets' => array( /* all three fields are required */
-            'PropertySet1' => array(
+        'propertySets' => array( // all three fields are required 
+          /*  'PropertySet1' => array(
                 'name' => 'PropertySet1',
                 'description' => 'Description for PropertySet1',
                 'category' => 'Example',
@@ -222,17 +222,17 @@ $components = array(
                 'name' => 'PropertySet2',
                 'description' => 'Description for PropertySet2',
                 'category' => 'Example',
-            ),
+            ),*/
         ),
 
         'snippets' => array(
-            'Snippet1' => array(
+           /* 'Snippet1' => array(
                 'category' => 'Example',
                 'description' => 'Description for Snippet one',
                 'static' => true,
             ),
 
-            'Snippet2' => array( /* example with static and property set(s)  */
+            'Snippet2' => array( //example with static and property set(s) 
                 'category' => 'Category2',
                 'description' => 'Description for Snippet two',
                 'static' => false,
@@ -240,28 +240,28 @@ $components = array(
                     'PropertySet1',
                     'PropertySet2'
                 ),
-            ),
+            ),*/
 
         ),
         'plugins' => array(
-            'Plugin1' => array( /* minimal example */
+            /*'Plugin1' => array( //minimal example 
                 'category' => 'Example',
             ),
-            'Plugin2' => array( /* example with static, events, and property sets */
+            'Plugin2' => array( //example with static, events, and property sets
                 'category' => 'Example',
                 'description' => 'Description for Plugin one',
                 'static' => false,
-                'propertySets' => array( /* all property sets to be connected to element */
+                'propertySets' => array( //all property sets to be connected to element 
                     'PropertySet1',
                 ),
                 'events' => array(
-                    /* minimal example - no fields */
+                    // minimal example - no fields 
                     'OnUserFormSave' => array(),
-                    /* example with fields set */
+                    // example with fields set 
                     'OnMyEvent1' => array(
-                        'priority' => '0', /* priority of the event -- 0 is highest priority */
-                        'group' => 'plugins', /* should generally be set to 'plugins' */
-                        'propertySet' => 'PropertySet1', /* property set to be used in this pluginEvent */
+                        'priority' => '0', // priority of the event -- 0 is highest priority
+                        'group' => 'plugins',  // should generally be set to 'plugins' 
+                        'propertySet' => 'PropertySet1', // property set to be used in this pluginEvent 
                     ),
                     'OnMyEvent2' => array(
                         'priority' => '3',
@@ -276,10 +276,10 @@ $components = array(
 
 
                 ),
-            ),
+            ),*/
         ),
         'chunks' => array(
-            'Chunk1' => array(
+           /* 'Chunk1' => array(
                 'category' => 'Example',
             ),
             'Chunk2' => array(
@@ -289,10 +289,10 @@ $components = array(
                 'propertySets' => array(
                     'PropertySet2',
                 ),
-            ),
+            ),*/
         ),
         'templates' => array(
-            'Template1' => array(
+           /* 'Template1' => array(
                 'category' => 'Example',
             ),
             'Template2' => array(
@@ -302,10 +302,10 @@ $components = array(
                 'propertySets' => array(
                     'PropertySet2',
                 ),
-            ),
+            ),*/
         ),
         'templateVars' => array(
-            'Tv1' => array(
+            /*'Tv1' => array(
                 'category' => 'Example',
                 'description' => 'Description for TV one',
                 'caption' => 'TV One',
@@ -322,18 +322,18 @@ $components = array(
 
                 ),
             ),
-            'Tv2' => array( /* example with templates, default, and static specified */
+            'Tv2' => array( //example with templates, default, and static specified 
                 'category' => 'Example',
                 'description' => 'Description for TV two',
                 'caption' => 'TV Two',
                 'static' => false,
                 'default_text' => '@INHERIT',
                 'templates' => array(
-                    'default' => 3, /* second value is rank -- for ordering TVs when editing resource */
+                    'default' => 3, //second value is rank -- for ordering TVs when editing resource 
                     'Template1' => 4,
                     'Template2' => 1,
                 ),
-            ),
+            ),*/
         ),
     ),
     /* (optional) will make all element objects static - 'static' field above will be ignored */
@@ -346,13 +346,14 @@ $components = array(
      * ************************************************************** */
     /* Array of Resource pagetitles for your Extra; All other fields optional.
        You can set any resource field here */
-    'resources' => array(
-        'Resource1' => array( /* minimal example */
+    'resources' => array();
+    /*'resources' => array(
+        'Resource1' => array( //minimal example 
             'pagetitle' => 'Resource1',
             'alias' => 'resource1',
             'context_key' => 'example',
         ),
-        'Resource2' => array( /* example with other fields */
+        'Resource2' => array( //example with other fields 
             'pagetitle' => 'Resource2',
             'alias' => 'resource2',
             'context_key' => 'example',
@@ -365,7 +366,7 @@ $components = array(
                 'Tv2' => 'SomeOtherValue',
             ),
         ),
-    ),
+    ),*/
 
 
     /* Array of languages for which you will have language files,
@@ -585,7 +586,7 @@ $components = array(
      */
 
     'cmpTemplates' => array (
-         'mgr:<div id="example-panel-home-div"></div>',
+         'mgr:<div id="gsm-div"></div>',
     ),
 
 

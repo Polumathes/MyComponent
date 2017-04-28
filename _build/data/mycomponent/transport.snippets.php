@@ -2,7 +2,7 @@
 /**
  * snippets transport file for MyComponent extra
  *
- * Copyright 2012-2013 by Bob Ray <http://bobsguides.com>
+ * Copyright 2017 by Bob Ray, Grey Sky Media 
  * Created on 06-26-2013
  *
  * @package mycomponent

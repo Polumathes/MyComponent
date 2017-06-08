@@ -17,7 +17,7 @@ $components = array(
     /* No spaces, no dashes */
     'packageNameLower' => $packageNameLower,
     'packageDescription' => 'MyComponent MODX Extra development tool',
-    'version' => 'gsm_1.0',
+    'version' => 'gsm_1.1',
     'release' => 'pl',
     'author' => 'Bob Ray, Grey Sky Media',
     'email' => '',
@@ -282,9 +282,45 @@ $components = array(
                 'category' => 'MyComponent',
                 'filename' => 'modtemplate.tpl',
             ),
+            'mycmp.getlist.class.php' => array(
+                'category' => 'MyComponent',
+                'filename' => 'mycmp.getlist.class.php'
+            ),
+            'mycmp.grid.tpl' => array(
+                'category' => 'MyComponent',
+                'filename' => 'mycmp.grid.tpl'
+            ),
+            'mycmp.processor.class.php' => array(
+                'category' => 'MyComponent',
+                'filename' => 'mycmp.processor.class.php'
+            ),
+            'mycmp.window.tpl' => array(
+                'category' => 'MyComponent',
+                'filename' => 'mycmp.window.tpl'
+            ),
             'mycomponentform.tpl' => array(
                 'category' => 'MyComponent',
                 'filename' => 'mycomponentform.tpl',
+            ),
+            'myexample.config.php' => array(
+                'category' => 'MyComponent',
+                'filename' => 'myexample.config.php'
+            ),
+            'mylicense.tpl' => array(
+                'category' => 'MyComponent',
+                'filename' => 'mylicense.tpl'
+            ),
+            'mylicense.txt.tpl' => array(
+                'category' => 'MyComponent',
+                'filename' => 'mylicense.txt.tpl'
+            ),
+            'myreadme.txt.tpl' => array(
+                'category' => 'MyComponent',
+                'filename' => 'myreadme.txt.tpl'
+            ),
+            'myuser.input.php' => array(
+                'category' => 'MyComponent',
+                'filename' => 'myuser.input.php'
             ),
             'phpfile.php' => array(
                 'category' => 'MyComponent',
